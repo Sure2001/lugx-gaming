@@ -1,0 +1,68 @@
+<div class="page-heading header-text">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>{{ product.name }}</h3>
+        <span class="breadcrumb">
+          <a routerLink="/">Home</a> &gt; <a routerLink="/shop">Shop</a> &gt; {{ product.name }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="single-product section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="left-image">
+          <img [src]="product.image" [alt]="product.name" class="img-fluid" />
+        </div>
+      </div>
+      <div class="col-lg-6 align-self-center">
+        <h4>{{ product.name }}</h4>
+        <span class="price">
+          <em>\${{ product.originalPrice }}</em> \${{ product.price }}
+        </span>
+        <p>{{ product.description }}</p>
+
+        <div class="form-group mb-3">
+          <label for="quantity">Quantity</label>
+          <input
+            type="number"
+            id="quantity"
+            class="form-control"
+            [(ngModel)]="product.quantity"
+            min="1"
+          />
+        </div>
+
+        <button (click)="addToCart()" class="btn btn-primary">
+          <i class="fa fa-shopping-bag"></i> ADD TO CART
+        </button>
+
+        <ul class="mt-3">
+          <li><strong>Game ID:</strong> {{ product.gameId }}</li>
+          <li>
+            <strong>Genre:</strong>
+            <span *ngFor="let g of product.genre; let i = index">
+              <a href="#">{{ g }}</a><span *ngIf="i !== product.genre.length - 1">, </span>
+            </span>
+          </li>
+          <li>
+            <strong>Multi-tags:</strong>
+            <span *ngFor="let tag of product.tags; let i = index">
+              <a href="#">{{ tag }}</a><span *ngIf="i !== product.tags.length - 1">, </span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="sep my-4 border-top"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

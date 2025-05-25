@@ -1,0 +1,19 @@
+h1, h2, h3, h4, h5, h6 {
+    color: #1e1e1e;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 700;
+}
+.transparent-navbar {
+  background-color: transparent !important;
+  transition: background-color 0.3s ease, border-radius 0.3s ease;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* On scroll, add blue gradient + border radius */
+.scrolled-navbar {
+  background: linear-gradient(to right, #0275f5, #007bff) !important;
+  border-bottom-left-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+}

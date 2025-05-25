@@ -1,16 +1,58 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { ShopComponent } from './shop/shop.component';
+import { ProductComponent } from './product/product.component';
+import { ContactComponent } from './contact/contact.component';
+import { SigninComponent } from './signin/signin.component';
+import { FeaturesComponent } from './features/features.component';
+import { TrendingComponent } from './trending/trending.component';
+import { CtaComponent } from './cta/cta.component';
+import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
+import { SignupComponent } from './signup/signup.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { AdminComponent } from './admin/admin.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UsersComponent } from './admin/users/users.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    ShopComponent,
+    ProductComponent,
+    ContactComponent,
+    SigninComponent,
+    FeaturesComponent,
+    TrendingComponent,
+    CtaComponent,
+    FooterComponent,
+    CartComponent,
+    SignupComponent,
+    CheckoutComponent,
+    AdminComponent,
+    DashboardComponent,
+    UsersComponent,
+    OrdersComponent,
+    SidebarComponent,
+  
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

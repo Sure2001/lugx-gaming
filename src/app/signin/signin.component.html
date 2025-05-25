@@ -1,0 +1,25 @@
+<div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3>Signin Page</h3>
+          <span class="breadcrumb"><a href="#">Home</a>  &gt;  <a href="#">Shop</a>  &gt; Signin</span>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container mt-5">
+  <h2>Sign In</h2>
+  <form (ngSubmit)="login()">
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="email" name="email" class="form-control" required />
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <input type="password" [(ngModel)]="password" name="password" class="form-control" required />
+    </div>
+    <button class="btn btn-primary">Sign In</button>
+    <p class="mt-2">Don't have an account? <a routerLink="/signup">Sign Up</a></p>
+  </form>
+</div>

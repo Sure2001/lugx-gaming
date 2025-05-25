@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signin',
@@ -9,12 +10,29 @@ import { Router } from '@angular/router';
 export class SigninComponent {
   email = '';
   password = '';
+  errorMessage = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   login() {
-    // Simulate successful login
-    localStorage.setItem('user', this.email);
-    this.router.navigate(['/checkout']);
+    const loginData = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.http.post<any>('http://localhost:5000/api/login', loginData).subscribe(
+      (response) => {
+        if (response.success) {
+          localStorage.setItem('user', JSON.stringify(response.user));
+          this.router.navigate(['/checkout']);
+        } else {
+          this.errorMessage = 'Invalid email or password';
+        }
+      },
+      (error) => {
+        this.errorMessage = 'Login failed. Please try again.';
+        console.error(error);
+      }
+    );
   }
 }

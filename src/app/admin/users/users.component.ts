@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-users',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  users: any[] = [];
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    this.http.get<any[]>('http://localhost:5000/api/users').subscribe({
+      next: (data) => this.users = data,
+      error: (err) => console.error('Failed to load users:', err)
+    });
   }
-
 }

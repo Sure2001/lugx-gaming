@@ -1,1 +1,21 @@
-<p>users works!</p>
+<div class="container mt-4">
+  <h2 class="mb-3">Registered Users</h2>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>

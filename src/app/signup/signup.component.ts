@@ -11,19 +11,33 @@ export class SignupComponent {
   name = '';
   email = '';
   password = '';
+  selectedFile: File | null = null;
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  signup() {
-    const user = { name: this.name, email: this.email, password: this.password };
+  // Called when file input changes
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
 
-    this.http.post('http://localhost:5000/api/auth/signup', user).subscribe({
-      next: () => {
-        localStorage.setItem('user', JSON.stringify(user));
+  signup() {
+    const formData = new FormData();
+    formData.append('name', this.name);
+    formData.append('email', this.email);
+    formData.append('password', this.password);
+
+    if (this.selectedFile) {
+      formData.append('avatar', this.selectedFile); // This must match multer.single('avatar')
+    }
+
+    this.http.post('http://localhost:5000/api/auth/register', formData).subscribe({
+      next: (res) => {
+        localStorage.setItem('user', JSON.stringify(res));
         alert('Signup successful');
         this.router.navigate(['/checkout']);
       },
-      error: () => {
+      error: (err) => {
+        console.error(err);
         alert('Signup failed');
       }
     });

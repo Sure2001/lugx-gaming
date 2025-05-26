@@ -34,7 +34,7 @@ export class SignupComponent {
       next: (res) => {
         localStorage.setItem('user', JSON.stringify(res));
         alert('Signup successful');
-        this.router.navigate(['/checkout']);
+        this.router.navigate(['/cart']);
       },
       error: (err) => {
         console.error(err);

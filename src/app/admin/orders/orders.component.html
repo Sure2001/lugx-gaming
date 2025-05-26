@@ -1,2 +1,62 @@
-<h2>Orders Management</h2>
-<p>Manage your orders here.</p>
+<!-- orders.component.html -->
+<div class="container mt-4">
+  <h2 class="mb-3">All Orders</h2>
+
+  <div class="d-flex justify-content-between mb-3">
+    <div>
+      <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()"> Select All
+      <button class="btn btn-danger btn-sm ms-2" (click)="deleteSelectedOrders()" [disabled]="!selectedOrders.size">
+        Delete Selected
+      </button>
+    </div>
+    <div>
+      <button class="btn btn-success btn-sm me-2" (click)="exportToCSV()">Export CSV</button>
+      <button class="btn btn-primary btn-sm" (click)="exportToExcel()">Export Excel</button>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th><input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()"></th>
+        <th>#</th>
+        <th>User Email</th>
+        <th>Total Price</th>
+        <th>Items</th>
+        <th>Price</th>
+        <th>Created At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of pagedOrders(); let i = index">
+        <td><input type="checkbox" [checked]="selectedOrders.has(order._id)" (change)="toggleSelection(order._id)"></td>
+        <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+        <td>{{ order.userEmail }}</td>
+        <td>₹{{ order.totalPrice }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let item of order.items">{{ item.name }}</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let item of order.items">₹{{ item.price }}</li>
+          </ul>
+        </td>
+        <td>{{ order.createdAt | date: 'short' }}</td>
+        <td>
+          <button class="btn btn-sm btn-info me-2" (click)="viewOrder(order)">View</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteOrder(order._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-secondary btn-sm" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ math.ceil(orders.length / itemsPerPage) }}</span>
+
+<button [disabled]="currentPage >= math.ceil(orders.length / itemsPerPage)">Next</button>
+  </div>
+</div>

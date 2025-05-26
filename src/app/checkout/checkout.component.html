@@ -8,15 +8,28 @@
       </div>
     </div>
   </div>
-<div class="container mt-5">
+<div class="container mt-4">
   <h2>Checkout</h2>
-  <p>Welcome, {{ user?.name }} ({{ user?.email }})</p>
 
-  <div class="alert alert-info">
-    This is your final step. You can customize this to show cart summary, payment, shipping info, etc.
+  <div *ngIf="user">
+    <p><strong>Email:</strong> {{ user.email }}</p>
   </div>
 
-  <button class="btn btn-primary" (click)="checkout()">Place Order</button>
+  <div *ngIf="cartItems.length > 0">
+    <ul>
+      <li *ngFor="let item of cartItems">
+        {{ item.name }} - {{ item.quantity }} - ₹{{ item.price }}
+      </li>
+    </ul>
+    <h4>Total: ₹{{ totalPrice }}</h4>
 
+    <button class="btn btn-success" (click)="checkout()">Place Order</button>
+  </div>
+
+  <div *ngIf="cartItems.length === 0">
+    <p>Your cart is empty.</p>
+    <a routerLink="/products" class="btn btn-primary">Shop Now</a>
+  </div>
 </div>
+
   

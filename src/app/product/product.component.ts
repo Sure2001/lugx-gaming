@@ -40,7 +40,7 @@ export class ProductComponent {
   }
 
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  alert('Item added to cart');
+  // alert('Item added to cart');
 }
 
 }

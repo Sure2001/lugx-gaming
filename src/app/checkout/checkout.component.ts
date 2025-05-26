@@ -47,6 +47,7 @@ export class CheckoutComponent implements OnInit {
     }
 
     const orderData = {
+      userName: this.user.name,
       userEmail: this.user.email,
       items: this.cartItems,
       totalPrice: this.totalPrice

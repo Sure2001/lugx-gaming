@@ -5,40 +5,46 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  private items: any[] = [];
+  private cartItems = new BehaviorSubject<any[]>(this.getCartFromStorage());
+  cartItems$ = this.cartItems.asObservable();
 
-  private cartItemsSubject = new BehaviorSubject<any[]>([]);
-  cartItems$ = this.cartItemsSubject.asObservable();
+  constructor() {}
 
-  addToCart(product: any) {
-    const existing = this.items.find(item => item.id === product.id);
-    if (existing) {
-      existing.quantity += product.quantity;
-      existing.total = existing.price * existing.quantity;
-    } else {
-      this.items.push({
-        ...product,
-        total: product.price * product.quantity
-      });
-    }
-    this.cartItemsSubject.next(this.items);
+  private getCartFromStorage(): any[] {
+    const data = localStorage.getItem('cartItems');
+    return data ? JSON.parse(data) : [];
   }
 
-  getItems() {
-    return this.items;
+  getCartCount(): number {
+    return this.getItems().length;
+  }
+
+  getItems(): any[] {
+    return this.cartItems.getValue();
+  }
+
+  updateCart(items: any[]) {
+    localStorage.setItem('cartItems', JSON.stringify(items));
+    this.cartItems.next(items);
+  }
+
+  addItem(item: any) {
+    const currentItems = this.getItems();
+    const updatedItems = [...currentItems, item];
+    this.updateCart(updatedItems);
   }
 
   removeItem(id: number) {
-    this.items = this.items.filter(item => item.id !== id);
-    this.cartItemsSubject.next(this.items);
+    const updatedItems = this.getItems().filter(item => item.id !== id);
+    this.updateCart(updatedItems);
   }
 
-  getTotal() {
-    return this.items.reduce((sum, item) => sum + item.total, 0);
+  getTotal(): number {
+    return this.getItems().reduce((sum, item) => sum + item.total, 0);
   }
 
   clearCart() {
-    this.items = [];
-    this.cartItemsSubject.next(this.items);
+    localStorage.removeItem('cartItems');
+    this.cartItems.next([]);
   }
 }

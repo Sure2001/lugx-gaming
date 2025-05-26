@@ -1,0 +1,10 @@
+#wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+}

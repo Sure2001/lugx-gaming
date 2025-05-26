@@ -30,7 +30,6 @@ export class CartComponent implements OnInit {
   checkout() {
     const user = localStorage.getItem('user');
     if (!user) {
-      // alert('Please signup or login first');
       this.router.navigate(['/signup']);
       return;
     }

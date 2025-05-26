@@ -19,21 +19,23 @@ export class SigninComponent {
       email: this.email,
       password: this.password
     };
+this.http.post<any>('http://localhost:5000/api/auth/login', loginData).subscribe({
+  next: (res) => {
+    if (res && res.user && res.user.email) {
+      localStorage.setItem('user', res.user.email); // ✅ correct path
+      alert('Login successful');
+      this.router.navigate(['/cart']);
+    } else {
+      this.errorMessage = 'Invalid response from server';
+      alert(this.errorMessage);
+    }
+  },
+  error: (err) => {
+    console.error(err);
+    this.errorMessage = 'Login failed. Please check your credentials.';
+    alert(this.errorMessage);
+  }
+});
 
-    this.http.post<any>('http://localhost:5000/api/login', loginData).subscribe(
-      (response) => {
-        if (response.success) {
-          // Save user data and navigate
-          localStorage.setItem('user', JSON.stringify(response.user));
-          this.router.navigate(['/checkout']);
-        } else {
-          this.errorMessage = response.message || 'Invalid credentials';
-        }
-      },
-      (error) => {
-        this.errorMessage = 'Login failed. Please try again.';
-        console.error(error);
-      }
-    );
   }
 }

@@ -1,17 +1,18 @@
-
-  <h2>Admin Dashboard</h2>
-  <div class="dashboard-cards">
-    <div class="card user-card" @fadeIn>
-      <h3>Users</h3>
-      <p>{{ userCount }}</p>
-    </div>
-    <div class="card order-card" @fadeIn>
-      <h3>Orders</h3>
-      <p>{{ orderCount }}</p>
-    </div>
-    <div class="card revenue-card" @fadeIn>
-      <h3>Total Revenue</h3>
-      <p>₹{{ totalRevenue }}</p>
-    </div>
+<h2>Admin Dashboard</h2>
+<div class="dashboard-cards">
+  <div class="card user-card" @fadeIn>
+    <div class="icon"><i class="fas fa-users"></i></div>
+    <h3>Users</h3>
+    <p>{{ userCount }}</p>
   </div>
-
+  <div class="card order-card" @fadeIn>
+    <div class="icon"><i class="fas fa-shopping-cart"></i></div>
+    <h3>Orders</h3>
+    <p>{{ orderCount }}</p>
+  </div>
+  <div class="card revenue-card" @fadeIn>
+    <div class="icon"><i class="fas fa-rupee-sign"></i></div>
+    <h3>Total Revenue</h3>
+    <p>₹{{ totalRevenue }}</p>
+  </div>
+</div>

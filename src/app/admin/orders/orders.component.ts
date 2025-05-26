@@ -72,12 +72,21 @@ math = Math; // For use in templates
     }
   }
 
-  deleteSelectedOrders(): void {
-    if (confirm('Are you sure you want to delete selected orders?')) {
-      const ids = Array.from(this.selectedOrders);
-      ids.forEach(id => this.deleteOrder(id));
-    }
+ deleteSelectedOrders(): void {
+  if (confirm('Are you sure you want to delete selected orders?')) {
+    const ids = Array.from(this.selectedOrders);
+
+    this.http.post('http://localhost:5000/api/order/delete-multiple', { ids }).subscribe({
+      next: () => {
+        this.orders = this.orders.filter(order => !this.selectedOrders.has(order._id));
+        this.selectedOrders.clear();
+        alert('Selected orders deleted successfully.');
+      },
+      error: err => console.error('Bulk delete failed:', err)
+    });
   }
+}
+
 
   exportToCSV(): void {
     const csvData = this.orders.map(order => ({

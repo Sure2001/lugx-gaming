@@ -23,10 +23,11 @@ export class SigninComponent {
     this.http.post<any>('http://localhost:5000/api/login', loginData).subscribe(
       (response) => {
         if (response.success) {
+          // Save user data and navigate
           localStorage.setItem('user', JSON.stringify(response.user));
           this.router.navigate(['/checkout']);
         } else {
-          this.errorMessage = 'Invalid email or password';
+          this.errorMessage = response.message || 'Invalid credentials';
         }
       },
       (error) => {

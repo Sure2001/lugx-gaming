@@ -15,29 +15,30 @@ export class CheckoutComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    try {
-      const userData = localStorage.getItem('user');
-      if (userData) this.user = { email: userData };
-      else {
-        alert('Please login or sign up to place an order.');
-        this.router.navigate(['/signup']);
-        return;
-      }
-
-      const cartData = localStorage.getItem('cartItems');
-      if (cartData) this.cartItems = JSON.parse(cartData);
-
-      const total = localStorage.getItem('totalPrice');
-      if (total) this.totalPrice = parseFloat(total);
-
-      if (this.cartItems.length === 0 || this.totalPrice <= 0) {
-        alert('Cart is empty. Please add items before checkout.');
-        this.router.navigate(['/checkout']);
-      }
-    } catch (err) {
-      console.error('LocalStorage parsing error:', err);
+  try {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      this.user = { email: userData }; // ✅ wrap in object
+    } else {
+      alert('Please login or sign up to place an order.');
+      this.router.navigate(['/signup']);
+      return;
     }
+
+    const cartData = localStorage.getItem('cartItems');
+    if (cartData) this.cartItems = JSON.parse(cartData);
+
+    const total = localStorage.getItem('totalPrice');
+    if (total) this.totalPrice = parseFloat(total);
+
+    if (this.cartItems.length === 0 || this.totalPrice <= 0) {
+      alert('Cart is empty. Please add items before checkout.');
+      this.router.navigate(['/checkout']);
+    }
+  } catch (err) {
+    console.error('LocalStorage parsing error:', err);
   }
+}
 
   checkout(): void {
     if (!this.user?.email || this.cartItems.length === 0 || this.totalPrice <= 0) {
@@ -58,6 +59,7 @@ export class CheckoutComponent implements OnInit {
         alert('Order placed successfully!');
 
         // Clear only checkout related data
+        localStorage.removeItem('user');
         localStorage.removeItem('cartItems');
         localStorage.removeItem('totalPrice');
 

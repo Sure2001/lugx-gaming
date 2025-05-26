@@ -20,6 +20,10 @@ export class SignupComponent {
     this.selectedFile = event.target.files[0];
   }
 
+  goToSignin(): void {
+    this.router.navigate(['/signin']);
+  }
+
   signup() {
     const formData = new FormData();
     formData.append('name', this.name);
@@ -30,16 +34,17 @@ export class SignupComponent {
       formData.append('avatar', this.selectedFile); // This must match multer.single('avatar')
     }
 
-    this.http.post('http://localhost:5000/api/auth/register', formData).subscribe({
-      next: (res) => {
-        localStorage.setItem('user', JSON.stringify(res));
-        alert('Signup successful');
-        this.router.navigate(['/cart']);
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Signup failed');
-      }
-    });
+   this.http.post('http://localhost:5000/api/auth/register', formData).subscribe({
+  next: (res: any) => {
+    localStorage.setItem('user', res.email); // ✅ store only email
+    alert('Signup successful');
+    this.router.navigate(['/cart']);
+  },
+  error: (err) => {
+    console.error(err);
+    alert('Signup failed');
+  }
+});
+
   }
 }

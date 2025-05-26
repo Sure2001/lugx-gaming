@@ -1,2 +1,17 @@
-<h2>Dashboard</h2>
-<p>Welcome to the Admin Dashboard.</p>
+
+  <h2>Admin Dashboard</h2>
+  <div class="dashboard-cards">
+    <div class="card user-card" @fadeIn>
+      <h3>Users</h3>
+      <p>{{ userCount }}</p>
+    </div>
+    <div class="card order-card" @fadeIn>
+      <h3>Orders</h3>
+      <p>{{ orderCount }}</p>
+    </div>
+    <div class="card revenue-card" @fadeIn>
+      <h3>Total Revenue</h3>
+      <p>₹{{ totalRevenue }}</p>
+    </div>
+  </div>
+

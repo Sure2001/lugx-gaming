@@ -4,7 +4,7 @@
 
   <div class="d-flex justify-content-between mb-3">
     <div>
-      <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()"> Select All
+      <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()">
       <button class="btn btn-danger btn-sm ms-2" (click)="deleteSelectedOrders()" [disabled]="!selectedOrders.size">
         Delete Selected
       </button>

@@ -10,7 +10,7 @@ import * as XLSX from 'xlsx';
 export class OrdersComponent implements OnInit {
   orders: any[] = [];
   currentPage = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 5;
   selectedOrders = new Set<string>();
   selectAllChecked = false;
 math = Math; // For use in templates

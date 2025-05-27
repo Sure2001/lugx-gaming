@@ -139,19 +139,19 @@ export class CheckoutComponent implements OnInit {
 
     this.http.post('http://localhost:5000/api/order/create', orderData, { headers }).subscribe({
       next: () => {
-        alert('Order placed successfully!');
+        // alert('Order placed successfully!');
 
-        // ✅ Clear cart and cart count via CartService
+        // Clear cart and cart count via CartService
         this.cartService.clearCart();
 
-        // ✅ Clear user only (cart is already cleared above)
+        // Clear user only (cart is already cleared above)
         localStorage.removeItem('user');
 
         this.router.navigate(['/']);
       },
       error: (err) => {
         console.error('Checkout failed:', err);
-        alert('Checkout failed. Please try again.');
+        // alert('Checkout failed. Please try again.');
       }
     });
   }

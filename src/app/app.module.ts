@@ -25,6 +25,8 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UsersComponent } from './admin/users/users.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { TopnavComponent } from './admin/topnav/topnav.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { SidebarComponent } from './admin/sidebar/sidebar.component';
     UsersComponent,
     OrdersComponent,
     SidebarComponent,
+    TopnavComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,

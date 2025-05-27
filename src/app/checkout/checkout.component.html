@@ -1,22 +1,44 @@
 <div class="page-heading header-text">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h3>Checkout Page</h3>
-          <span class="breadcrumb"><a href="#">Home</a>  &gt;  <a href="#">Shop</a>  &gt; Checkout</span>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Checkout Page</h3>
+        <span class="breadcrumb">
+          <a href="#">Home</a> &gt; <a href="#">Shop</a> &gt; Checkout
+        </span>
       </div>
     </div>
   </div>
-<div class="container mt-5">
-  <h2>Checkout</h2>
-  <p>Welcome, {{ user?.name }} ({{ user?.email }})</p>
+</div>
 
-  <div class="alert alert-info">
-    This is your final step. You can customize this to show cart summary, payment, shipping info, etc.
+<div class="container mt-5">
+  
+  <h2>Welcome, {{ user?.name }} ({{ user?.email }})</h2>
+
+  <div *ngIf="cartItems.length > 0">
+    <h4>Order Summary</h4>
+    <table  class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.name }}</td>
+          <td>₹{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₹{{ item.price * item.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <h5>Total: ₹{{ totalPrice }}</h5>
   </div>
 
-  <button class="btn btn-primary" (click)="checkout()">Place Order</button>
-
-</div>
   
+
+  <button class="btn btn-primary" (click)="checkout()">Place Order</button>
+</div>

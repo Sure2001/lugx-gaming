@@ -1,7 +1,17 @@
 .admin-layout {
   display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
+
+.main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
 .content {
+  flex: 1;
   padding: 20px;
-  width: 100%;
+  overflow-y: auto;
 }

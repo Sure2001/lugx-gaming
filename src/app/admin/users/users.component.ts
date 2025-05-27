@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
 
   selectAllChecked = false;
   currentPage = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 5;
 
    Math = Math;
 

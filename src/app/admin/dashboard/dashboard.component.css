@@ -46,15 +46,15 @@
 }
 
 .user-card {
-  border-left: 6px solid #007bff;
+  border-left: 6px solid black;
 }
 
 .order-card {
-  border-left: 6px solid #ffc107;
+  border-left: 6px solid black;
 }
 
 .revenue-card {
-  border-left: 6px solid #28a745;
+  border-left: 6px solid black;
 }
 .dashboard-cards {
   display: flex;
@@ -78,14 +78,17 @@
 
 .user-card {
   background: #4e73df;
+  height: 190px;
 }
 
 .order-card {
   background: #1cc88a;
+  height: 190px;
 }
 
 .revenue-card {
   background: #f6c23e;
+   height: 190px;
 }
 
 .icon {

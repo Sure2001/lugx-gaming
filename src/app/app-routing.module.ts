@@ -13,11 +13,7 @@ import { AdminComponent } from './admin/admin.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UsersComponent } from './admin/users/users.component';
 import { OrdersComponent } from './admin/orders/orders.component';
-
-
-
-
-
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 
 const routes: Routes = [
@@ -29,16 +25,21 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'cart', pathMatch: 'full' },
 
-   { path: '', redirectTo: 'admin/dashboard', pathMatch: 'full' },
+  // ✅ Admin login route (NO sidebar/topnav)
+  { path: 'admin/login', component: AdminLoginComponent },
+
+  // ✅ Admin layout with sidenav/topnav
   {
     path: 'admin', component: AdminComponent, children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'users', component: UsersComponent },
       { path: 'orders', component: OrdersComponent }
     ]
-  }
+  },
+
+  // ✅ Default redirect
+  { path: '', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

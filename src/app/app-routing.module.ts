@@ -26,10 +26,10 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
 
-  // ✅ Admin login route (NO sidebar/topnav)
+  
   { path: 'admin/login', component: AdminLoginComponent },
 
-  // ✅ Admin layout with sidenav/topnav
+  
   {
     path: 'admin', component: AdminComponent, children: [
       { path: 'dashboard', component: DashboardComponent },

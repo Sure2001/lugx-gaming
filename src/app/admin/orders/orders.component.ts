@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as XLSX from 'xlsx';
 
+declare var bootstrap: any;
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -11,6 +12,7 @@ export class OrdersComponent implements OnInit {
   orders: any[] = [];
   currentPage = 1;
   itemsPerPage = 5;
+  selectedOrder: any = null;
   selectedOrders = new Set<string>();
   selectAllChecked = false;
 math = Math; // For use in templates
@@ -40,10 +42,16 @@ math = Math; // For use in templates
     if (this.currentPage < Math.ceil(this.orders.length / this.itemsPerPage)) this.currentPage++;
   }
 
-  viewOrder(order: any): void {
-    alert(JSON.stringify(order, null, 2));
-  }
+  
+   viewOrder(order: any): void {
+    this.selectedOrder = order;
 
+    const modalElement = document.getElementById('orderModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
   deleteOrder(id: string): void {
     if (confirm('Are you sure you want to delete this order?')) {
       this.http.delete(`http://localhost:5000/api/order/delete/${id}`).subscribe({

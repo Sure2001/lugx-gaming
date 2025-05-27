@@ -47,4 +47,5 @@ export class CartService {
     localStorage.removeItem('cartItems');
     this.cartItems.next([]);
   }
+  
 }

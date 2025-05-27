@@ -14,7 +14,7 @@ export class ProductComponent {
     price: 1100,
     originalPrice: 1500,
     quantity: 1,
-    image: 'assets/banner-03.png',
+    image: 'assets/add-game.jpeg',
     genre: ['Action', 'Team', 'Single'],
     tags: ['War', 'Battle', 'Royal'],
     gameId: 'COD MMII'
@@ -39,7 +39,7 @@ export class ProductComponent {
       });
     }
 
-    this.cartService.updateCart(existingCart); // ✅ update through service
+    this.cartService.updateCart(existingCart); // update through service
     // Optionally show a popup
     // this.toastr.success('Item added to cart', 'Success');
   }

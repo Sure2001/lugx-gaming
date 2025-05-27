@@ -3,7 +3,7 @@
         <div class="row">
           <div class="col-lg-12">
             <h3>Orders</h3>
-            <span class="breadcrumb"><a href="/admin">Admin</a> &gt; Orders List</span>
+            <span class="breadcrumb"><a href="/admin/dashboard">Admin</a> &gt; Orders List</span>
           </div>
         </div>
       </div>
@@ -53,6 +53,34 @@
     </tr>
   </tbody>
 </table>
+
+<!-- Order View Modal -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="orderModalLabel">Order Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedOrder">
+        <p><strong>Email:</strong> {{ selectedOrder.userEmail }}</p>
+        <p><strong>Created At:</strong> {{ selectedOrder.createdAt | date: 'medium' }}</p>
+        <p><strong>Total Price:</strong> ₹{{ selectedOrder.totalPrice }}</p>
+        <hr />
+        <h6>Items:</h6>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between" *ngFor="let item of selectedOrder.items">
+            <span>{{ item.name }}</span>
+            <span>₹{{ item.price }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
  <div class="pagination-controls">

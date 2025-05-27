@@ -60,8 +60,8 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-bottom-right',
+      timeOut: 10000,
+      positionClass: 'toast-bottom-center',
       preventDuplicates: true,
     }),
   ],

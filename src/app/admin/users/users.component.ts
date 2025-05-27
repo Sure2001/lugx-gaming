@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
 
+declare var bootstrap: any;
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -12,7 +13,7 @@ export class UsersComponent implements OnInit {
   users: any[] = [];
   displayedUsers: any[] = [];
   selectedUsers: Set<string> = new Set();
-
+  selectedUser: any = null;
   selectAllChecked = false;
   currentPage = 1;
   itemsPerPage = 5;
@@ -118,7 +119,12 @@ export class UsersComponent implements OnInit {
   }
 
   viewUser(user: any): void {
-    alert(`Name: ${user.name}\nEmail: ${user.email}`);
+    this.selectedUser = user;
+    const modalElement = document.getElementById('userModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
   }
 
   exportToExcel(): void {

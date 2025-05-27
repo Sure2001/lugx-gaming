@@ -4,6 +4,9 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0px;
     font-weight: 700;
 }
+h2 span{
+    color: red;
+}
 .page-heading {
     background-image: url('/assets/banner-02.png');
     border-radius: 0px 0px 150px 150px;

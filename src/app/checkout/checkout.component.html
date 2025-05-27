@@ -12,8 +12,8 @@
 </div>
 
 <div class="container mt-5">
-  
-  <h2>Welcome, {{ user?.name }} ({{ user?.email }})</h2>
+
+  <h2>Welcome, <span>{{ user?.email }}</span></h2>
 
   <div *ngIf="cartItems.length > 0">
     <h4>Order Summary</h4>

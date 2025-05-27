@@ -144,7 +144,7 @@ export class CheckoutComponent implements OnInit {
         // Clear cart and cart count via CartService
         this.cartService.clearCart();
 
-        // Clear user only (cart is already cleared above)
+        //Clear user only (cart is already cleared above)
         localStorage.removeItem('user');
 
         this.router.navigate(['/']);

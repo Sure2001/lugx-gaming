@@ -198,3 +198,9 @@ p a {
 p a:hover {
   text-decoration: underline;
 }
+.toast-success {
+  background-color: #28a745;
+}
+.toast-error {
+  background-color: #dc3545;
+}

@@ -111,3 +111,7 @@ img {
     display: inline-block;
     color: #aaa;
 }
+th ,td {
+    padding: 10px;
+    text-align: center;
+}

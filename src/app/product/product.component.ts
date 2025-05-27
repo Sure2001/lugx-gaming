@@ -11,8 +11,8 @@ export class ProductComponent {
     id: 1,
     name: 'Call of Duty®: Modern Warfare® II',
     description: 'LUGX Gaming Template is based on the latest Bootstrap 5 CSS framework. This template is suitable for your gaming shop ecommerce websites.',
-    price: 22,
-    originalPrice: 28,
+    price: 1100,
+    originalPrice: 1500,
     quantity: 1,
     image: 'assets/banner-03.png',
     genre: ['Action', 'Team', 'Single'],
@@ -23,24 +23,25 @@ export class ProductComponent {
   constructor(private cartService: CartService) {}
 
   addToCart() {
-  const cartData = localStorage.getItem('cartItems');
-  let cartItems = cartData ? JSON.parse(cartData) : [];
+    const existingCart = this.cartService.getItems();
+    const existingIndex = existingCart.findIndex(item => item.id === this.product.id);
 
-  const existingIndex = cartItems.findIndex((item: any) => item.id === this.product.id);
+    if (existingIndex !== -1) {
+      // Update quantity of existing item
+      existingCart[existingIndex].quantity += this.product.quantity || 1;
+    } else {
+      // Add new item
+      existingCart.push({
+        id: this.product.id,
+        name: this.product.name,
+        price: this.product.price,
+        quantity: this.product.quantity || 1
+      });
+    }
 
-  if (existingIndex !== -1) {
-    cartItems[existingIndex].quantity += this.product.quantity || 1;
-  } else {
-    cartItems.push({
-      id: this.product.id,
-      name: this.product.name,
-      price: this.product.price,
-      quantity: this.product.quantity || 1
-    });
+    this.cartService.updateCart(existingCart); // ✅ update through service
+    // Optionally show a popup
+    // this.toastr.success('Item added to cart', 'Success');
   }
-
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  // alert('Item added to cart');
-}
 
 }

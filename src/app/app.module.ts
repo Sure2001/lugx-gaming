@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,7 +26,6 @@ import { UsersComponent } from './admin/users/users.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +47,6 @@ import { SidebarComponent } from './admin/sidebar/sidebar.component';
     UsersComponent,
     OrdersComponent,
     SidebarComponent,
-  
   ],
   imports: [
     BrowserModule,
@@ -56,7 +54,12 @@ import { SidebarComponent } from './admin/sidebar/sidebar.component';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

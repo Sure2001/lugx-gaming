@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
   checkout() {
     const user = localStorage.getItem('user');
     if (!user) {
-      this.router.navigate(['/signup']);
+      this.router.navigate(['/signin']);
       return;
     }
 
